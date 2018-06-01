@@ -67,7 +67,7 @@ module.exports.configure = function (mode) {
 */
 module.exports.enable = function enable() {
   ['http', 'https'].forEach(function (protocol) {
-    var protocolModule = require(protocol);
+    var protocolModule = require(`${protocol}`);
     if (protocolModule.__replayerRequest) {
       protocolModule.request = protocolModule.__replayerRequest;
     } else {
@@ -81,7 +81,7 @@ module.exports.enable = function enable() {
 */
 module.exports.disable = function disable() {
   ['http', 'https'].forEach(function (protocol) {
-    var protocolModule = require(protocol);
+    var protocolModule = require(`${protocol}`);
     if (protocolModule.__originalRequest) {
       protocolModule.request = protocolModule.__originalRequest;
     } else {
@@ -110,7 +110,7 @@ module.exports.isEnabled = function isEnabled() {
 
 //
 ['http', 'https'].forEach(function (protocol) {
-  var protocolModule = require(protocol);
+  var protocolModule = require(`${protocol}`);
   var oldRequest = protocolModule.request;
   protocolModule.__originalRequest = oldRequest;
 
