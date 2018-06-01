@@ -15,17 +15,18 @@
 // By default, we won't start up the replayer server.
 var server;
 
+let cache = require("./src/cache");
 switch (process.env.REACT_APP_VCR_MODE) {
   case "record":
-    var cache = require("./src/cache");
+    cache = require("./src/cache");
     cache.configure("record");
     break;
   case "playback":
-    var cache = require("./src/cache");
+    cache = require("./src/cache");
     cache.configure("playback");
     break;
   case "cache":
-    var cache = require("./src/cache");
+    cache = require("./src/cache");
     cache.configure("cache");
     break;
   // otherwise, leave http alone
